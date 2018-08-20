@@ -1,8 +1,12 @@
 module InsertionSortSpec where
 
-import Test.Hspec
+import           Data.List
+import           Test.QuickCheck
+import           Test.Hspec
+
+import qualified InsertionSort as Sort
 
 spec :: Spec
-spec = describe "Insertion Sort" $ do
-  specify "test" $
-    "1" `shouldBe` "1"
+spec = describe "Insertion Sort" $
+  specify "test" $ property $ \list ->
+    Sort.insertion (list :: [Int]) `shouldBe` sort list
