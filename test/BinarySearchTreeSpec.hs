@@ -1,4 +1,4 @@
-module Test.BinarySearchTree where
+module BinarySearchTreeSpec where
 
 import Test.Hspec
 import Test.QuickCheck
@@ -6,8 +6,8 @@ import Test.QuickCheck
 import BinarySearchTree (Tree(..))
 import qualified BinarySearchTree as T
 
-testBinarySearchTree :: Spec
-testBinarySearchTree = describe "binary search tree" $ do
+spec :: Spec
+spec = describe "binary search tree" $ do
   describe "insert" $ do
     specify "empty" $ property $
       \x -> T.insert (x :: Int) Empty == Node Empty x Empty

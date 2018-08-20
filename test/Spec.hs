@@ -1,7 +1,1 @@
-import Test.Hspec
-
-import Test.BinarySearchTree
-
-main :: IO ()
-main = hspec $ do
-  testBinarySearchTree
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
