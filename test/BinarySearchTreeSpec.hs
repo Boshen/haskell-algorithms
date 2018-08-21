@@ -1,22 +1,23 @@
 module BinarySearchTreeSpec where
 
-import Test.Hspec
-import Test.QuickCheck
+import           Test.Hspec
+import           Test.Hspec.QuickCheck
+import           Test.QuickCheck
 
-import BinarySearchTree (Tree(..))
-import qualified BinarySearchTree as T
+import           BinarySearchTree      (Tree (..))
+import qualified BinarySearchTree      as T
 
 spec :: Spec
 spec = describe "binary search tree" $ do
   describe "insert" $ do
-    specify "empty" $ property $
-      \x -> T.insert (x :: Int) Empty == Node Empty x Empty
+    prop "empty" $ \x ->
+      T.insert (x :: Int) Empty == Node Empty x Empty
 
-    specify "left" $ property $ \x ->
+    prop "left" $ \x ->
       let node = T.insert 1 Empty
       in x < 1 ==> T.insert (x :: Int) node == Node (Node Empty x Empty) 1 Empty
 
-    specify "right" $ property $ \x ->
+    prop "right" $ \x ->
       let node = T.insert 1 Empty
       in x >= 1 ==> T.insert (x :: Int) node == Node Empty 1 (Node Empty x Empty)
 
@@ -40,10 +41,10 @@ spec = describe "binary search tree" $ do
     T.lookup 14 tree `shouldBe` Node Empty 14 Empty
     T.lookup 9 tree `shouldBe` Node Empty 9 Empty
 
-  specify "maximum" $ property $ \list ->
+  prop "maximum" $ \list ->
     length list /= 0 ==> T.maximum (T.fromList list) == maximum (list :: [Int])
 
-  specify "minimum" $ property $ \list ->
+  prop "minimum" $ \list ->
     length list /= 0 ==> T.minimum (T.fromList list) == minimum (list :: [Int])
 
   specify "delete" $ do
@@ -52,7 +53,7 @@ spec = describe "binary search tree" $ do
     T.delete 1 (T.fromList [2, 1, 3]) `shouldBe` Node Empty 2 (Node Empty 3 Empty)
     T.delete 2 (T.fromList [2, 1, 3]) `shouldBe` Node (Node Empty 1 Empty) 3 Empty
 
-  specify "length" $ property $ \list ->
+  prop "length" $ \list ->
     T.length (T.fromList list) == length (list :: [Int])
 
 tree :: Tree Int
