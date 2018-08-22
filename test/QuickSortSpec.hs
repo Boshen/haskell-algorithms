@@ -8,6 +8,10 @@ import           Test.QuickCheck
 import qualified QuickSort             as Sort
 
 spec :: Spec
-spec = describe "Quick Sort" $
-  prop "test" $ \list ->
-    Sort.quick (list :: [Int]) `shouldBe` List.sort list
+spec = describe "Quick Sort" $ do
+  describe "Quick Sort" $ do
+    prop "quick" $ \list ->
+      Sort.quick (list :: [Int]) `shouldBe` List.sort list
+
+    prop "merge" $ \list ->
+      Sort.msort (list :: [Int]) `shouldBe` List.sort list

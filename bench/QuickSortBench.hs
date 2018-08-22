@@ -3,7 +3,7 @@ import           Criterion.Main
 import qualified QuickSort      as Sort
 import           System.Random
 
-size = 1000000
+size = 5000000
 
 main :: IO ()
 main = do
@@ -12,7 +12,8 @@ main = do
   defaultMain
     [ bgroup
         "quick"
-        [ bench "p1" $ whnf Sort.quick nums
-        , bench "p2" $ whnf Sort.quick2 nums
+        [ bench "quick sort" $ whnf Sort.quick nums
+        , bench "acummulated quick sort" $ whnf Sort.asort nums
+        , bench "merge sort" $ whnf Sort.msort nums
         ]
     ]
