@@ -1,13 +1,13 @@
-module InsertionSortSpec where
+module QuickSortSpec where
 
 import qualified Data.List             as List
 import           Test.Hspec
 import           Test.Hspec.QuickCheck
 import           Test.QuickCheck
 
-import qualified InsertionSort         as Sort
+import qualified QuickSort             as Sort
 
 spec :: Spec
-spec = describe "Insertion Sort" $
+spec = describe "Quick Sort" $
   prop "test" $ \list ->
-    Sort.insertion (list :: [Int]) `shouldBe` List.sort list
+    Sort.quick (list :: [Int]) `shouldBe` List.sort list

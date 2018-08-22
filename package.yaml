@@ -22,9 +22,13 @@ dependencies:
 - base >= 4.7 && < 5
 - hspec
 - QuickCheck
+- criterion
+- random
 
 library:
   source-dirs: src
+  ghc-options:
+    - -O2
 
 tests:
   haskell-algorithms-test:
@@ -36,3 +40,14 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - haskell-algorithms
+
+benchmarks:
+  bench:
+    source-dirs:
+      - src
+      - bench
+    main:             QuickSortBench.hs
+    ghc-options:
+      - -O2
+    other-modules:
+      - QuickSort
